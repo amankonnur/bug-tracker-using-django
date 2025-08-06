@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+    {% csrf_token %}
+
+    <nav class="nav navbar-light bg-light" >
+        <div class="container">
+            <div class="jumbotron">
+                <ul class="nav navbar">
+                    <li class="nav-item" ><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <!-- <li class="nav-item" ><a href="{% url 'profile' %}" class="nav-link">Profile</a></li> -->
+                    <!-- <li class="nav-item" ><a href="{% url 'index' %}" class="nav-link">Register</a></li>
+                    <li class="nav-item" ><a href="{% url 'login' %}" class="nav-link">Login</a></li> -->
+                    <li class="nav-item" ><a href="{% url 'defect_list' %}" class="nav-link">Defects</a></li>
+                    <li class="nav-item" ><a href="#" class="nav-link">Completed</a></li>
+                    <li class="nav-item" ><a href="#" class="nav-link">Pending</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

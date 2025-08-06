@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% csrf_token %}
+    <div class="container">
+        <div class="jumbotron">
+            <div class="card card_body">
+                <h1 style="text-align: center;">Login Here</h1>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="username">Username :</label>
+                    <input type="text" name="username" placeholder="enter username">
+                    <br><br>
+                    <label for="password">Password :</label>
+                    <input type="text" name="password" placeholder="enter password">
+                    <br><br>
+                    <h6 style="text-align: center;"><a href="#">forgot password</a></h6>
+                    <br>
+                    <input type="submit" value="Login" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

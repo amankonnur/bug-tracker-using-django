@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+
+
+
+{% block content %}
+{% csrf_token %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>  {{ user.username }} profile's</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-body">
+                        <p>Email: {{ user.email }}</p>
+                        <p>Door no: {{ user.userdata.door_no}}</p>
+                        <p>Street: {{ user.userdata.street}}</p>
+                        <p>City: {{ user.userdata.city}}</p>
+                        <p>Pin code: {{ user.userdata.zipcode}}</p>
+                        <a href="{% url 'update' %}"><button class="btn btn-success" >UPDATE</button></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-dody">
+                        {% if user.userdata.profile_pic %}
+                            <img src="{{ user.userdata.profile_pic.url }}" height="200px" width="200px" alt="Profile Picture">
+                            <p>Profile Picture</p>
+                        {% else %}
+                            <h1>no image</h1>
+                        {% endif %}
+                    </div>
+                </div>
+            </div><br>
+            <input type="submit" class="btn btn-success" value="EDIT PROFILE">
+        </div>
+    </div>
+    
+{% endblock %}

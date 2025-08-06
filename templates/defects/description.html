@@ -1,0 +1,20 @@
+{% extends "defects/base.html" %}
+
+{% block content %}
+
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h3 style="text-align:center ">defect description</h3>
+            <p>{{defects.defect_name}}</p>
+            <p>{{defects.description}}</p>
+            {% for image in defect1 %}
+                {% if image.defect_img %}
+                    <img src="{{ image.defect_img.url }}" alt="no img" height="300px" width="200px"><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

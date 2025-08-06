@@ -1,0 +1,44 @@
+{% extends "defects/base.html" %}
+
+{% block content %}
+    {% csrf_token %}
+
+    <h2>{{ defects|length }} defects found</h2>
+    <table border="2px" cellpadding="5px" class="table table-sm">
+        <tr>
+            <th>Defect ID</th>
+            <th>Defect Name</th>
+            <th>Assigned By</th>
+            <th>Assigned To</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Priority</th>
+        </tr>
+        {% for defect in defects %}
+        <tr>
+            <td>{{ defect.defectid }}</td>
+            <td>{{ defect.defect_name }}</td>
+            <td>{{ defect.assignedby }}</td>
+            <td>{{ defect.assignedto }}</td>    
+            <td><a href="{{ defect.id }}">more_info</a></td>
+            <td>{{ defect.defect_status }}</td>
+            <td><a href="{% url 'edit' id=defect.id %}">edit</a> </td>
+            {% if defect.priority == 'high' %}
+                <td>
+                    <i class="bi bi-bell-fill"></i>
+                </td>
+            {% elif defect.priority == 'medium' %}
+                <td>
+                    <i class="bi bi-medium"></i>
+                </td>
+            {% else %}
+                <td>
+                    <i class="bi bi-three-dots"></i>
+                </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
