@@ -8,8 +8,10 @@ from defects.forms import DefectEditForm
 @login_required(login_url='login')
 def defect_list(request):
     defects = Defect.objects.all()
+    defects_count = Defect.objects.all().count()
     context = {
-        'defects': defects
+        'defects': defects,
+        'defects_count': defects_count
     }
     return render(request, 'defects/alldefects.html', context)
 

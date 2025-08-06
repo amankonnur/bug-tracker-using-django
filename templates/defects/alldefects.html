@@ -2,8 +2,8 @@
 
 {% block content %}
     {% csrf_token %}
-
-    <h2>{{ defects|length }} defects found</h2>
+    <center><h2>Defects List</h2></center>
+    <h3>{{ defects_count }} defects found</h3>
     <table border="2px" cellpadding="5px" class="table table-sm">
         <tr>
             <th>Defect ID</th>
