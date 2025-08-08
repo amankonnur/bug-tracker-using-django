@@ -32,5 +32,26 @@
             <input type="submit" class="btn btn-success" value="EDIT PROFILE">
         </div>
     </div>
-    
+    <br>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="card card-body">
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-4">
+                        <p>Total Defects assigned</p>
+                        <h2>{{defects_count}}</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <p>complted defects</p>
+                        <h2>{{completed}}</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Pending</p>
+                        <h2>{{pending}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

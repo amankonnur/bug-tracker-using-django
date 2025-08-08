@@ -3,6 +3,7 @@ from userapp.forms import updateprofileform, userform,userprofileform,updateform
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from defects.models import Defect
 
 
 # Create your views here.
@@ -63,9 +64,28 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
+
+
+
 @login_required(login_url='login')
 def profile(request):
-    return render(request,'accounts/profile.html',{})
+    defects = Defect.objects.all()
+    defects_count = Defect.objects.all().count()
+    # defects_count = len(list(map(Defect.objects.all())))
+    pending = Defect.objects.filter(defect_status='not started yet').count()
+    in_progress = Defect.objects.filter(defect_status='still in progress').count()
+    completed = Defect.objects.filter(defect_status='completed').count()
+    context = {
+        'defects': defects,
+        'defects_count': defects_count,
+        'pending': pending,
+        'in_progress': in_progress,
+        'completed': completed
+    }
+    return render(request, 'accounts/profile.html', context)
+
+
+
 
 @login_required(login_url='login')
 def update(request):

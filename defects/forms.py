@@ -7,3 +7,9 @@ class DefectEditForm(forms.ModelForm):
     class Meta:
         model = Defect
         fields = ['defectid', 'defect_name', 'assignedby', 'assignedto', 'description','defect_edit', 'defect_status', 'priority']
+
+
+class Adddefect(forms.ModelForm):
+    class Meta:
+        model = Defect
+        fields = '__all__'
