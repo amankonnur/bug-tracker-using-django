@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from userapp.forms import updateprofileform, userform,userprofileform,updateform
+from userapp.forms import updateprofileform, userform,userprofileform,updateform,forgotpasswordform
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -106,3 +106,15 @@ def update(request):
     return render(request,'accounts/update.html',{'form':form,'form1':form1})
 
 
+def forgotpassword(request):
+    if request.method == 'POST':
+        form = forgotpasswordform(request.POST)
+        if form.is_valid():
+            print(form.changed_data['username'])
+            print(form.changed_data['password'])
+            print(form.changed_data['cleaned_username'])
+    
+    else:
+        form  = forgotpasswordform()
+
+    return render(request,'accounts/forgot.html',{'form':form})
