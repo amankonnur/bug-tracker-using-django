@@ -13,3 +13,9 @@ class Adddefect(forms.ModelForm):
     class Meta:
         model = Defect
         fields = '__all__'
+
+
+class FilterDefectForm(forms.ModelForm):
+    class Meta:
+        model = Defect
+        fields = ['assignedto']

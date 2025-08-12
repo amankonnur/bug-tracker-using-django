@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from defects.models import Defect
-
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -110,11 +110,19 @@ def forgotpassword(request):
     if request.method == 'POST':
         form = forgotpasswordform(request.POST)
         if form.is_valid():
-            print(form.changed_data['username'])
-            print(form.changed_data['password'])
-            print(form.changed_data['cleaned_username'])
-    
+            username = form.cleaned_data['username']
+            new_password = form.cleaned_data['password']
+
+            user = User.objects.get(username=username)
+            user.set_password(new_password)
+            user.save()
+
+            return redirect('pswdchange')
     else:
         form  = forgotpasswordform()
-
     return render(request,'accounts/forgot.html',{'form':form})
+
+
+def passwordchangesuccess(request):
+    return render(request,'accounts/passwordchangesuccess.html',{})
+

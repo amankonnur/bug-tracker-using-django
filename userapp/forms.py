@@ -40,5 +40,7 @@ class forgotpasswordform(forms.Form):
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match.")
         
+        # if password == confirm_password:
+            
         return cleaned_data
     

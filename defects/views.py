@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from defects.models import Defect,defect_screen_short
 from django.contrib.auth.decorators import login_required
-from defects.forms import DefectEditForm, Adddefect
+from defects.forms import DefectEditForm, Adddefect,FilterDefectForm
 from django.core.paginator import Paginator
-
+from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required(login_url='login')
@@ -57,19 +57,18 @@ def adddefect(request):
     return render(request, 'defects/adddefects.html',{'form': form})
 
 
-# def cards(request):
-#     defects = Defect.objects.all()
-#     # defects_count = Defect.objects.all().count()
-#     defects_count = len(list(map(Defect.objects.all())))
-#     pending = Defect.objects.filter(defect_status='not started yet').count()
-#     in_progress = Defect.objects.filter(defect_status='still in progress').count()
-#     completed = Defect.objects.filter(defect_status='completed').count()
-#     context = {
-#         'defects': defects,
-#         'defects_count': defects_count,
-#         'pending': pending,
-#         'in_progress': in_progress,
-#         'completed': completed
-#     }
-#     print(context)
-#     return render(request, 'accounts/profile.html', context)
+def filter(request):
+    defects = Defect.objects.all()
+    if request.method == 'POST':
+        form = FilterDefectForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['assignedto']
+
+            # user = User.objects.get(username=name)
+
+            # devname = 
+
+
+    else:
+        form = FilterDefectForm()
+    return render(request,'defects/filter.html',{"form":form,'name':name,'defects':defects})

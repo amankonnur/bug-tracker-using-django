@@ -6,6 +6,7 @@ urlpatterns = [
     path('<int:id>', views.description, name='description'),
     path('edit/<int:id>',views.edit_defect,name='edit'),
     path('adddefect', views.adddefect, name='adddefect'),
+    path('filter',views.filter,name='filter'),
     # path('cards', views.cards, name='cards'),
 ]
 

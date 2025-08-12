@@ -1,10 +1,13 @@
-{% extends "defects/base.html" %}
+{% extends 'defects/base.html' %}
 
 {% block content %}
-    {% csrf_token %}
-    <center><h2>Defects List</h2></center>
-    <a href="{% url 'filter' %}"><button class="btn btn-success">FILTER</button></a>
-    <h3>{{ defects_count }} defects found</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Search" class="btn btn-primary">
+    </form>
+    <br>
     <table border="2px" cellpadding="5px" class="table table-sm">
         <tr>
             <th>Defect ID</th>
@@ -17,6 +20,7 @@
             <th>Priority</th>
         </tr>
         {% for defect in defects %}
+            {% if defect.assignedto == name %}
         <tr>
             <td>{{ defect.defectid }}</td>
             <td>{{ defect.defect_name }}</td>
@@ -39,9 +43,10 @@
                 </td>
             {% endif %}
         </tr>
+            {% endif %}
         {% endfor %}
     </table>
 
-    <button class="btn btn-dark"><a href="{% url 'adddefect' %}">ADD</a></button>
+    
 
 {% endblock %}

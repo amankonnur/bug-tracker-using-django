@@ -9,4 +9,5 @@ urlpatterns = [
     path('update',views.update,name='update'),
     path('logout',views.user_logout,name='logout'),
     path('forgot',views.forgotpassword,name='forgot'),
+    path('pswdchange',views.passwordchangesuccess,name='pswdchange'),
 ]
