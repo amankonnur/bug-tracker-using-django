@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from defects.forms import DefectEditForm, Adddefect,FilterDefectForm
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+from defects.utils import send_email_view
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -37,6 +39,7 @@ def edit_defect(request,id=0):
         form = DefectEditForm(request.POST,instance=defect)
         if form.is_valid():    
             form.save()
+
             return redirect('defect_list')
     else:
         form = DefectEditForm(instance=defect)
@@ -51,6 +54,8 @@ def adddefect(request):
         form = Adddefect(request.POST)
         if form.is_valid():
             form.save()
+            # user = 
+            send_email_view(user.email)
             return redirect('defect_list')
     else:
         form = Adddefect()
