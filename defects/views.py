@@ -69,11 +69,6 @@ def filter(request):
         if form.is_valid():
             name = form.cleaned_data['assignedto']
 
-            # user = User.objects.get(username=name)
-
-            # devname = 
-
-
     else:
         form = FilterDefectForm()
     return render(request,'defects/filter.html',{"form":form,'name':name,'defects':defects})
